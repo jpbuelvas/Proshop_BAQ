@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/orebiSlice";
-
+import { formatMoney
+ } from "../../services/utils";
 const ProductInfo = ({ productInfo }) => {
   const dispatch = useDispatch();
   const [selectedSize, setSelectedSize] = useState(null);
@@ -13,7 +14,7 @@ const ProductInfo = ({ productInfo }) => {
   return (
     <div className="flex flex-col gap-5">
       <h2 className="text-4xl font-semibold">{productInfo.productName}</h2>
-      <p className="text-xl font-semibold">${productInfo.price}</p>
+      <p className="text-xl font-semibold">{formatMoney(productInfo.price)}</p>
       <p className="text-base text-gray-600">{productInfo.des}</p>
       <p className="text-sm">Sé el primero en dar el paso</p>
       <p className="font-medium text-lg">

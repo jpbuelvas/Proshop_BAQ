@@ -116,7 +116,8 @@ const HeaderBottom = () => {
                               price: item.precio,
                               color: item.color,
                               badge: true,
-                              des: item.descripcion || 'Sin descripción disponible.'
+                              des: item.descripcion || 'Sin descripción disponible.',
+                              tallas: item.tallas, // Aquí estamos pasando la propiedad 'tallas'
                             } }}
                         ) & setSearchQuery("")
                       }
@@ -126,7 +127,6 @@ const HeaderBottom = () => {
                       <img className="w-24" src={item.imagenes?.[0] || '/no-photo.jpg'} alt="productImg" />
                       <div className="flex flex-col gap-1">
                         <p className="font-semibold text-lg">{item.nombre}</p>
-                        <p className="text-xs">{item.descripcion}</p>
                         <p className="text-sm">
                           Precio: <span className="text-primeColor font-semibold">${item.precio}</span>
                         </p>
