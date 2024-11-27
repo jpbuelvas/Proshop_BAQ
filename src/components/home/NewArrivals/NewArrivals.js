@@ -1,25 +1,15 @@
-import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
 import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
-import { fetchProducts } from "../../services/utils";
+import { CircularProgress } from "@mui/material";
+import { useProducts } from "../../services/productsContext";
+
 const NewArrivals = () => {
-  const [productos, setProductos] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const { productos, loading } = useProducts();
 
   // Cargar productos al montar el componente
-  useEffect(() => {
-    const loadProducts = async () => {
-      setLoading(true);
-      const products = await fetchProducts(); // Llamada a la función que obtiene productos
-      setProductos(products);
-      setLoading(false);
-    };
-
-    loadProducts();
-  }, []);
 
   const settings = {
     infinite: true,
@@ -58,28 +48,34 @@ const NewArrivals = () => {
 
   return (
     <div className="w-full pb-16">
-      <Heading heading="Nuevas Llegadas" />
-      <Slider {...settings}>
-        {loading ? (
-          <div>Cargando productos...</div>
-        ) : (
-          productos.map((item) => (
+      <Heading heading="Lo Último en Tendencias" />
+      {loading ? (
+        <div className="flex justify-center items-center h-full">
+          <CircularProgress />
+        </div>
+      ) : productos.length > 0 ? (
+        <Slider {...settings}>
+          {productos.map((item) => (
             <div className="px-2" key={item.id}>
               <Product
-                _id={item.id}
-                img={item.imagenes?.[0] || '/no-photo.jpg'} // Usa una imagen por defecto si no existe
-                productName={item.nombre}
-                price={item.precio}
-                color={item.color}
-                badge={true}
-                des={item.descripcion || 'Sin descripción disponible.'}
-              />
+              _id={item.id}
+              img={item.imagenes?.[0] || "/no-photo.jpg"}
+              productName={item.nombre}
+              price={item.precio}
+              color={item.color}
+              badge={true}
+              des={item.descripcion || "Sin descripción disponible."}
+              tallas={item.tallas} // Aquí estamos pasando la propiedad 'tallas'
+            />
             </div>
-          ))
-        )}
-      </Slider>
+          ))}
+        </Slider>
+      ) : (
+        <p>No se encontraron productos.</p>
+      )}
     </div>
   );
+  
 };
 
 export default NewArrivals;

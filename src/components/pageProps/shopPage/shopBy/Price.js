@@ -1,5 +1,6 @@
 import React from "react";
 import NavTitle from "./NavTitle";
+import { formatMoney } from "../../../services/utils";
 
 const Price = ({ onPriceRangeSelect }) => {
   const priceList = [
@@ -28,7 +29,7 @@ const Price = ({ onPriceRangeSelect }) => {
               onClick={() => handleClick(item.priceOne, item.priceTwo)}
               className="border-b-[1px] border-b-[#F0F0F0] pb-2 flex items-center gap-2 hover:text-primeColor hover:border-gray-400 duration-300"
             >
-              ${item.priceOne.toFixed(2)} - ${item.priceTwo.toFixed(2)}
+              {formatMoney(item.priceOne.toFixed(2))} - {formatMoney(item.priceTwo.toFixed(2))}
             </li>
           ))}
         </ul>

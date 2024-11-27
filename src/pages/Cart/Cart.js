@@ -14,7 +14,6 @@ const Cart = () => {
   const dispatch = useDispatch(); // Hook para despachar acciones de Redux
   const products = useSelector((state) => state.orebiReducer.products); // Obtiene los productos del estado global
   const [totalAmt, setTotalAmt] = useState(""); // Estado para el monto total del carrito
-  const [shippingCharge, setShippingCharge] = useState(""); // Estado para el costo de envío
 
   // Efecto para calcular el monto total del carrito
   useEffect(() => {
@@ -26,20 +25,10 @@ const Cart = () => {
     setTotalAmt(price); // Actualiza el monto total
   }, [products]);
 
-  // Efecto para determinar el costo de envío basado en el total
-  useEffect(() => {
-    if (totalAmt <= 200) {
-      setShippingCharge(30);
-    } else if (totalAmt <= 400) {
-      setShippingCharge(25);
-    } else if (totalAmt > 401) {
-      setShippingCharge(20);
-    }
-  }, [totalAmt]);
 
   return (
     <div className="max-w-container mx-auto px-4">
-      <Breadcrumbs title="Cart" /> {/* Muestra el rastro de navegación */}
+      <Breadcrumbs title="Carrito" /> {/* Muestra el rastro de navegación */}
       {products.length > 0 ? ( // Verifica si hay productos en el carrito
         <div className="pb-20">
           {/* Encabezados para la tabla de productos */}
@@ -93,18 +82,13 @@ const Cart = () => {
                     {formatMoney(totalAmt)}
                   </span>
                 </p>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
-                  Costo de envío
-                  <span className="font-semibold tracking-wide font-titleFont">
-                    {formatMoney(shippingCharge)}
-                  </span>
-                </p>
                 <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
                   Total
                   <span className="font-bold tracking-wide text-lg font-titleFont">
-                    {formatMoney(totalAmt + shippingCharge)}
+                    {formatMoney(totalAmt)}
                   </span>
                 </p>
+                
               </div>
               <div className="flex justify-end">
                 <Link to="/paymentgateway">

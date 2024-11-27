@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import Product from "../../home/Products/Product";
 import { fetchProducts } from "../../services/utils";
+import { CircularProgress } from "@mui/material";
 
 function Items({ currentItems }) {
   return (
@@ -17,6 +18,7 @@ function Items({ currentItems }) {
               color={item.color}
               badge={true}
               des={item.descripcion || "Sin descripción disponible."}
+              tallas={item.tallas} // Aquí estamos pasando la propiedad 'tallas'
             />
           </div>
         ))}
@@ -71,10 +73,8 @@ const Pagination = ({ itemsPerPage, priceRange }) => {
 
   if (loading) {
     return (
-      <div className="text-center py-20">
-        <p className="text-xl font-semibold text-gray-600">
-          Cargando Productos.
-        </p>
+      <div className="flex justify-center items-center h-full">
+        <CircularProgress />
       </div>
     );
   }
