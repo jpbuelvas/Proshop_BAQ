@@ -1,0 +1,19 @@
+{
+  // Activar auto guardado
+  "files.autoSave": "onWindowChange",
+  "files.autoSaveDelay": 1000,
+
+  // Formateo al guardar el archivo
+  "editor.formatOnSave": true,
+
+  // Usar Prettier como el formateador por defecto
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Configuración de Prettier
+  "prettier.requireConfig": true,  // Solo usar Prettier si hay un archivo de configuración
+  "prettier.printWidth": 80,
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.semi": true
+}
