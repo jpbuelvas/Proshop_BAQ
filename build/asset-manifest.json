@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.bbfabda0.css",
-    "main.js": "/static/js/main.5f8436ed.js",
+    "main.css": "/static/css/main.cd2bf9b5.css",
+    "main.js": "/static/js/main.5a82a1d4.js",
     "static/media/bannerImgProshop2.jpeg": "/static/media/bannerImgProshop2.6cfcef8095f663d2ccc2.jpeg",
     "static/media/ProshopLogo.png": "/static/media/ProshopLogo.9d3933786624fba5f970.png",
     "static/media/bannerImgTwo.webp": "/static/media/bannerImgTwo.d93152138c5c9da3de58.webp",
@@ -27,11 +27,11 @@
     "static/media/newArrTwo.webp": "/static/media/newArrTwo.bdc7d9372116bdf40cc4.webp",
     "static/media/newArrOne.webp": "/static/media/newArrOne.5982a995e5c312914fe6.webp",
     "index.html": "/index.html",
-    "main.bbfabda0.css.map": "/static/css/main.bbfabda0.css.map",
-    "main.5f8436ed.js.map": "/static/js/main.5f8436ed.js.map"
+    "main.cd2bf9b5.css.map": "/static/css/main.cd2bf9b5.css.map",
+    "main.5a82a1d4.js.map": "/static/js/main.5a82a1d4.js.map"
   },
   "entrypoints": [
-    "static/css/main.bbfabda0.css",
-    "static/js/main.5f8436ed.js"
+    "static/css/main.cd2bf9b5.css",
+    "static/js/main.5a82a1d4.js"
   ]
 }
