@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FaSearch,  FaShoppingCart } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,20 +7,20 @@ import { fetchProducts } from "../../services/utils";
 
 const HeaderBottom = () => {
   const products = useSelector((state) => state.orebiReducer.products);
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const navigate = useNavigate();
-  const ref = useRef();
+  // const ref = useRef();
 
   // Este efecto se asegura de que al hacer clic fuera del menú, este se cierre.
-  useEffect(() => {
-    document.body.addEventListener("click", (e) => {
-      if (ref.current.contains(e.target)) {
-        setShow(true);
-      } else {
-        setShow(false);
-      }
-    });
-  }, [ref]);
+  // useEffect(() => {
+  //   document.body.addEventListener("click", (e) => {
+  //     if (ref.current.contains(e.target)) {
+  //       setShow(true);
+  //     } else {
+  //       setShow(false);
+  //     }
+  //   });
+  // }, [ref]);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
