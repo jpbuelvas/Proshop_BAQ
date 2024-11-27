@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import {
-  bannerImgOne,
-  bannerImgTwo,
-  bannerImgThree,
-  bannerImgProshop,
+  bannerImgProshop
 } from "../../assets/images";
 import Image from "../designLayouts/Image";
 

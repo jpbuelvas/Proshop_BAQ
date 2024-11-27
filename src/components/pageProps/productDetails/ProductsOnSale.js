@@ -1,6 +1,5 @@
 import React from "react"; 
 import { useProducts } from "../../services/productsContext";
-import { ImSpinner9 } from "react-icons/im";
 import { CircularProgress } from "@mui/material";
 
 const ProductsOnSale = () => {
