@@ -19,7 +19,6 @@ const Product = (props) => {
   const navigate = useNavigate();
   const productItem = props;
   const handleProductDetails = () => {
-    console.log(rootId, productItem, "productItem");
     navigate(`/product/${rootId}`, {
       state: {
         item: productItem,
@@ -29,7 +28,6 @@ const Product = (props) => {
 
   // Verificamos si las imágenes están definidas y no están vacías
   const imageSrc = props.img ? props.img : "/no-photo.jpg"; 
-  console.log(props,"props")
   return (
     <div className="w-full relative group">
       <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
@@ -43,6 +41,7 @@ const Product = (props) => {
           <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r">
             <li
               onClick={() =>
+
                 dispatch(
                   addToCart({
                     _id: props._id,

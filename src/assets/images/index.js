@@ -1,5 +1,5 @@
 import logo from "./ProshopLogo.png";
-import logoLight from "./logoLight.png";
+import logoLight from "./proshopLogoLight.png";
 import bannerImgOne from "./banner/bannerImgOne.webp";
 import bannerImgTwo from "./banner/bannerImgTwo.webp";
 import bannerImgThree from "./banner/bannerImgThree.webp";
