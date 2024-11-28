@@ -1,6 +1,7 @@
 import React from "react"; 
 import { useProducts } from "../../services/productsContext";
 import { CircularProgress } from "@mui/material";
+import { formatMoney } from "../../services/utils";
 
 const ProductsOnSale = () => {
   const { productos, loading } = useProducts();
@@ -24,7 +25,7 @@ const ProductsOnSale = () => {
   return (
     <div>
       <h3 className="font-titleFont text-xl font-semibold mb-6 underline underline-offset-4 decoration-[1px]">
-        Productos Aleatorios
+        Productos Relacionados
       </h3>
       <div className="flex flex-col gap-2">
         {randomProducts.map((item) => (
@@ -35,7 +36,7 @@ const ProductsOnSale = () => {
               <img className="w-24 h-24" src={item.imagenes?.[0] || '/no-photo.jpg'} alt={item.nombre} />
             <div className="flex flex-col gap-2 font-titleFont">
               <p className="text-base font-medium">{item.nombre}</p>
-              <p className="text-sm font-semibold">${item.precio}</p>
+              <p className="text-sm font-semibold">{formatMoney(item.precio)}</p>
             </div>
           </div>
         ))}
