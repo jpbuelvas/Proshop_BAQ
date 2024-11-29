@@ -5,8 +5,8 @@ import { resetCart } from "../../redux/orebiSlice";
 import ItemCard from "./ItemCard";
 import { formatMoney } from "../../components/services/utils";
 import WhatsAppButton from "../../components/services/whatsappButton";
+
 const Cart = () => {
-  
   const dispatch = useDispatch();
   const products = useSelector((state) => state.orebiReducer.products);
   const [totalAmt, setTotalAmt] = useState("");
@@ -60,13 +60,17 @@ const Cart = () => {
                   </span>
                 </p>
               </div>
-              <div className="flex justify-end">
+              <div className="flex flex-col items-end">
+                {/* Botón de WhatsApp */}
                 <WhatsAppButton
                   prenda="Carrito completo"
                   talla="N/A"
-                  products={products} // Pasamos los productos
-                  totalAmt={totalAmt} // Pasamos el monto total
+                  products={products}
+                  totalAmt={totalAmt}
                 />
+                {/* Mensaje adicional para informar sobre la acción */}
+                <p className="text-center text-sm text-gray-600 mt-2">
+                📲 Haz clic en el botón de WhatsApp para completar tu pedido y proceder con el pago. Nuestro equipo se pondrá en contacto contigo a la brevedad. 💬</p>
               </div>
             </div>
           </div>

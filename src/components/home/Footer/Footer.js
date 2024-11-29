@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import FooterListTitle from "./FooterListTitle";
-import { paymentCard } from "../../../assets/images";
-import Image from "../../designLayouts/Image";
+
 
 const Footer = () => {
   const [emailInfo, setEmailInfo] = useState("");
@@ -29,7 +28,7 @@ const Footer = () => {
   };
 
   return (
-    <div className="w-full bg-[#F5F5F3] py-20">
+    <div className="w-full bg-[#F5F5F3] py-20 footer-container">
       <div className="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 px-4 gap-10">
         <div className="col-span-2">
           <FooterListTitle title="Más sobre ProshopBAQ" />
@@ -74,27 +73,6 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          {/* <FooterListTitle title="Tu cuenta" />
-          <ul className="flex flex-col gap-2">
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Perfil
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Pedidos
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Direcciones
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Detalles de la cuenta
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Opciones de pago
-            </li>
-          </ul>
-        </div>
-        <div className="col-span-2 flex flex-col items-center w-full px-4">
-          <FooterListTitle title="Suscríbete a nuestro boletín." /> */}
           <div className="w-full">
             <p className="text-center mb-4">
               ¡Recibe las últimas noticias y ofertas exclusivas de ProshopBAQ!
@@ -133,12 +111,12 @@ const Footer = () => {
               </div>
             )}
 
-            <Image
+            {/* <Image
               className={`w-[80%] lg:w-[60%] mx-auto ${
                 subscription ? "mt-2" : "mt-6"
               }`}
               imgSrc={paymentCard}
-            />
+            /> */}
           </div>
         </div>
       </div>
