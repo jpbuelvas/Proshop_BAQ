@@ -10,7 +10,7 @@ const WhatsAppButton = ({ products, totalAmt }) => {
 
   return (
     <a
-      href={`https://wa.me/5733011451419?text=${encodeURIComponent(message)}`}
+      href={`https://wa.me/573011451419?text=${encodeURIComponent(message)}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
