@@ -6,6 +6,7 @@ const ProductsContext = createContext();
 
 // Proveedor del contexto
 export const ProductsProvider = ({ children }) => {
+
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
 

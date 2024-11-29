@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import Product from "../../home/Products/Product";
-import { fetchProducts } from "../../services/utils";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Box} from "@mui/material";
+import { useProducts } from "../../services/productsContext";
 
 function Items({ currentItems }) {
   return (
@@ -27,23 +27,10 @@ function Items({ currentItems }) {
 }
 
 const Pagination = ({ itemsPerPage, priceRange }) => {
-  const [productos, setProductos] = useState([]); // Todos los productos
+  const { productos, loading } = useProducts();
   const [filteredProducts, setFilteredProducts] = useState([]); // Productos filtrados
-  const [loading, setLoading] = useState(true);
   const [itemOffset, setItemOffset] = useState(0); // Desplazamiento inicial para paginación
 
-  // Cargar productos al inicio
-  useEffect(() => {
-    const loadProducts = async () => {
-      setLoading(true);
-      const products = await fetchProducts(); // Llama al servicio para obtener productos
-      setProductos(products);
-      setFilteredProducts(products); // Inicialmente sin filtro
-      setLoading(false);
-    };
-
-    loadProducts();
-  }, []);
 
   // Filtrar productos según el rango de precios
   useEffect(() => {
@@ -73,9 +60,23 @@ const Pagination = ({ itemsPerPage, priceRange }) => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-full">
-        <CircularProgress />
-      </div>
+      <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        backgroundColor: "rgba(0, 0, 0, 0.5)", // Fondo semitransparente
+        zIndex: 9999,
+        color: "#fff", // Hace que el spinner herede el color blanco
+      }}
+    >
+      <CircularProgress color="inherit" size={60} />
+    </Box>
     );
   }
 

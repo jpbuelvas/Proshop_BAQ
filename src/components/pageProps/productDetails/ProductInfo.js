@@ -3,12 +3,48 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/orebiSlice";
 import { formatMoney
  } from "../../services/utils";
+ import { toast } from "react-toastify";
 const ProductInfo = ({ productInfo }) => {
   const dispatch = useDispatch();
   const [selectedSize, setSelectedSize] = useState(null);
   const handleSizeChange = (size) => {
     setSelectedSize(size);
   };
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      toast.warn("Por favor, selecciona una talla antes de añadir al carrito.", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+          backgroundColor: "#ffff",
+          color: "#FFC107",
+          fontFamily: "Arial, sans-serif",
+          fontSize: "16px",
+        },
+      });
+      return;
+    }
+  
+    dispatch(
+      addToCart({
+        _id: productInfo.id,
+        name: productInfo.productName,
+        quantity: 1,
+        image: productInfo.img,
+        badge: productInfo.badge,
+        price: productInfo.price,
+        colors: productInfo.color,
+        tallas: selectedSize,
+      })
+    );
+  };
+  
+  
 
   return (
     <div className="flex flex-col gap-5">
@@ -40,26 +76,13 @@ const ProductInfo = ({ productInfo }) => {
         </div>
       )}
 
-      <button
-        onClick={() =>
-          dispatch(
-            addToCart({
-              _id: productInfo.id,
-              name: productInfo.productName,
-              quantity: 1,
-              image: productInfo.img,
-              badge: productInfo.badge,
-              price: productInfo.price,
-              colors: productInfo.color,
-              tallas: selectedSize, // Enviar la talla seleccionada al carrito
-            })
-          )
-        }
-        className="w-full py-4 bg-primeColor hover:bg-black duration-300 text-white text-lg font-titleFont mt-4"
-        disabled={!selectedSize} // Deshabilitar el botón si no se ha seleccionado una talla
-      >
-        Añadir al carrito
-      </button>
+<button
+  onClick={handleAddToCart}
+  className="w-full py-4 bg-primeColor hover:bg-black duration-300 text-white text-lg font-titleFont mt-4"
+>
+  Añadir al carrito
+</button>
+
     </div>
   );
 };

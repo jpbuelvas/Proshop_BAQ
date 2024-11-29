@@ -23,6 +23,9 @@ import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
 import WhatsAppPayment from "./components/services/WhatsAppPayment";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Layout = () => {
   return (
     <div>
@@ -62,6 +65,7 @@ const router = createBrowserRouter(
 function App() {
   return (
     <div className="font-bodyFont">
+            <ToastContainer />
       <RouterProvider router={router} />
     </div>
   );

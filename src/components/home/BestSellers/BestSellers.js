@@ -1,11 +1,10 @@
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
 import { useProducts } from "../../services/productsContext";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Box } from "@mui/material";
 
 const BestSellers = () => {
   const { productos, loading } = useProducts();
-  console.log(productos, "productos");
 
   // Lista de los IDs de productos que queremos mostrar
   const selectedIds = [1, 2, 4, 9, 17, 24,27,21];
@@ -16,10 +15,25 @@ const BestSellers = () => {
   // Mostrar un mensaje de carga mientras los productos se obtienen
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-full">
-        <CircularProgress />
-      </div>
+      <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        backgroundColor: "rgba(0, 0, 0, 0.5)", // Fondo semitransparente
+        zIndex: 9999,
+        color: "#fff", // Hace que el spinner herede el color blanco
+      }}
+    >
+      <CircularProgress color="inherit" size={60} />
+    </Box>
     );
+   
   }
 
   return (

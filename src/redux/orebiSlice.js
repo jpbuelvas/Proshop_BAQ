@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify"; // Importar toast
 
 const initialState = {
   userInfo: [],
@@ -14,12 +15,59 @@ export const orebiSlice = createSlice({
         (item) => item.name === action.payload.name
       );
       if (item) {
-        //item.quantity += action.payload.quantity;
-        console.log("Este producto ya está en el carrito");
+        toast.info(`El producto ${action.payload.name} ya está en el carrito.`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          style: {
+            backgroundColor: "#ffff",
+            color: "#2196F3",
+            fontFamily: "Arial, sans-serif",
+            fontSize: "16px",
+          },
+        });
       } else {
-        state.products.push(action.payload);
+        try {
+          state.products.push(action.payload);
+          toast.success(`${action.payload.name} ha sido agregado al carrito!`, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            style: {
+              backgroundColor: "#ffff",
+              color: "#4CAF50",
+              fontFamily: "Arial, sans-serif",
+              fontSize: "16px",
+            },
+          });
+        } catch (error) {
+          toast.error(`No se pudo agregar ${action.payload.name} al carrito.`, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            style: {
+              backgroundColor: "#ffff",
+              color: "#f44336",
+              fontFamily: "Arial, sans-serif",
+              fontSize: "16px",
+            },
+          });
+        }
       }
-    },
+    }
+    ,
     increaseQuantity: (state, action) => {
       const item = state.products.find(
         (item) => item._id === action.payload._id

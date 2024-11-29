@@ -3,11 +3,10 @@ import Heading from "../Products/Heading";
 import Product from "../Products/Product";
 import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
-import { CircularProgress } from "@mui/material";
 import { useProducts } from "../../services/productsContext";
 
 const NewArrivals = () => {
-  const { productos, loading } = useProducts();
+  const { productos } = useProducts();
 
   // Cargar productos al montar el componente
 
@@ -49,11 +48,7 @@ const NewArrivals = () => {
   return (
     <div className="w-full pb-16">
       <Heading heading="Lo Último en Tendencias" />
-      {loading ? (
-        <div className="flex justify-center items-center h-full">
-          <CircularProgress />
-        </div>
-      ) : productos.length > 0 ? (
+      {productos.length > 0 ? (
         <Slider {...settings}>
           {productos.map((item) => (
             <div className="px-2" key={item.id}>

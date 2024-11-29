@@ -3,24 +3,16 @@ import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { fetchProducts } from "../../services/utils";
+import { useProducts } from "../../services/productsContext";
 
 const HeaderBottom = () => {
+  const { productos } = useProducts();
+
   const products = useSelector((state) => state.orebiReducer.products);
   const navigate = useNavigate();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [productos, setProductos] = useState([]);
-
-  // Cargar productos desde la API cuando el componente se monte.
-  useEffect(() => {
-    const loadProducts = async () => {
-      const products = await fetchProducts(); // Llamada a la función desde utils.js.
-      setProductos(products);
-    };
-    loadProducts();
-  }, []);
 
   // Filtrar productos basados en la búsqueda del usuario.
   useEffect(() => {
