@@ -6,7 +6,6 @@ import { formatMoney
 const ProductInfo = ({ productInfo }) => {
   const dispatch = useDispatch();
   const [selectedSize, setSelectedSize] = useState(null);
-
   const handleSizeChange = (size) => {
     setSelectedSize(size);
   };

@@ -32,7 +32,6 @@ export const fetchProducts = async () => {
     );
 
     if (response.data.status === 'success') {
-      console.log(response.data.data);
       const productsWithImages = response.data.data.map((product) => ({
         ...product,
         imagenUrl: product.imagenes[0] || 'ruta_a_imagen_placeholder.jpg',

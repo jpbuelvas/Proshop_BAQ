@@ -70,6 +70,7 @@ const HeaderBottom = () => {
                     color: item.color,
                     badge: true,
                     des: item.descripcion || "Sin descripción disponible.",
+                    tallas: item.tallas,
                   },
                 },
               }
