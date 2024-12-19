@@ -9,6 +9,7 @@ import saleImgThree from "./sale/saleImgThree.webp";
 import bannerImgProshop from "./banner/bannerImgProshop.webp"
 import bannerImgProshopTwo from "./banner/bannerImgProshop2.jpeg"
 import Banner_newProshop from "./banner/Banner_newProshop.jpeg"
+import BannerNavidad from "./banner/bannerNavidad.jpeg"
 // ============== Products Start here ====================
 // New Arrivals
 import newArrOne from "./products/newArrival/newArrOne.webp";
@@ -46,6 +47,7 @@ export {
   bannerImgProshop,
   bannerImgProshopTwo,
   Banner_newProshop,
+  BannerNavidad,
   // ===================== Products start here ============
   // New Arrivals
   newArrOne,
