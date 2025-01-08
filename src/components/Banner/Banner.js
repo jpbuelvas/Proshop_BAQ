@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import {
-  BannerNavidad
+  BannerEnero
 } from "../../assets/images";
 import Image from "../designLayouts/Image";
 
@@ -102,7 +102,7 @@ const Banner = () => {
       <Slider {...settings}>
         <Link to="/shop">
           <div>
-            <Image imgSrc={BannerNavidad} className="w-full h-auto" />
+            <Image imgSrc={BannerEnero} className="w-full h-auto" />
           </div>
         </Link>
        {/*  <Link to="/shop">
