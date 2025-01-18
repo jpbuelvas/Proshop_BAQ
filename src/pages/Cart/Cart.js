@@ -5,6 +5,7 @@ import { resetCart } from "../../redux/orebiSlice";
 import ItemCard from "./ItemCard";
 import { formatMoney } from "../../components/services/utils";
 import WhatsAppButton from "../../components/services/whatsappButton";
+import WompiButton from "../../components/services/WompiButton";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,9 @@ const Cart = () => {
                     {formatMoney(totalAmt)}
                   </span>
                 </p>
+                <div className="flex justify-end">
+              <WompiButton amount={totalAmt} />
+              </div>
               </div>
               <div className="flex flex-col items-end">
                 {/* Botón de WhatsApp */}
