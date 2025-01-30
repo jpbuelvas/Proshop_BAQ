@@ -4,7 +4,6 @@ import axios from 'axios';
 const WompiButton = ({ amount }) => {
   const buttonContainerRef = useRef(null);
   const publicKey = process.env.REACT_APP_WOMPI_PUBLIC_KEY;
-
   useEffect(() => {
     const loadWompiWidget = async () => {
       const amountInCents = parseInt(amount, 10) * 100;
@@ -16,7 +15,6 @@ const WompiButton = ({ amount }) => {
           amountInCents,
           currency: 'COP'
         });
-        console.log(data,"data")
         const script = document.createElement('script');
         script.src = 'https://checkout.wompi.co/widget.js';
         script.setAttribute('data-render', 'button');
@@ -35,10 +33,12 @@ const WompiButton = ({ amount }) => {
       }
     };
 
-    loadWompiWidget();
-  }, [amount,publicKey]);
+      loadWompiWidget();
+    
+  }, [amount, publicKey]);
 
   return <div ref={buttonContainerRef} className="my-3"></div>;
+
 };
 
 export default WompiButton;

@@ -12,7 +12,7 @@ function Items({ currentItems }) {
           <div key={item.id} className="w-full">
             <Product
               _id={item.id}
-              img={item.imagenes?.[0] || "/no-photo.jpg"}
+              img={item.imagenes || "/no-photo.jpg"}
               productName={item.nombre}
               price={item.precio}
               color={item.color}

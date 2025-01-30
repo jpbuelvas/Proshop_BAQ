@@ -4,6 +4,7 @@ import { toast } from "react-toastify"; // Importar toast
 const initialState = {
   userInfo: [],
   products: [],
+  address:{},
 };
 
 export const orebiSlice = createSlice({
@@ -91,6 +92,10 @@ export const orebiSlice = createSlice({
         (item) => item._id !== action.payload
       );
     },
+    setCartDetails: (state, action) => {
+      // El payload completo es la dirección, no necesita .address
+      state.address = action.payload;
+    },
     resetCart: (state) => {
       state.products = [];
     },
@@ -102,6 +107,7 @@ export const {
   increaseQuantity,
   drecreaseQuantity,
   deleteItem,
+  setCartDetails,
   resetCart,
 } = orebiSlice.actions;
 export default orebiSlice.reducer;

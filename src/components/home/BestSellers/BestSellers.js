@@ -7,7 +7,7 @@ const BestSellers = () => {
   const { productos, loading } = useProducts();
 
   // Lista de los IDs de productos que queremos mostrar
-  const selectedIds = [1, 2, 4, 9, 17, 24,27,21];
+  const selectedIds = [1, 2, 4, 9, 17, 24,32,33];
 
   // Filtrar los productos por los IDs seleccionados
   const filteredProducts = productos.filter((item) => selectedIds.includes(item.id));
@@ -45,7 +45,7 @@ const BestSellers = () => {
             <Product
               key={item.id} // Agregar una clave única aquí para evitar errores
               _id={item.id}
-              img={item.imagenes?.[0] || "/no-photo.jpg"}
+              img={item.imagenes || "/no-photo.jpg"}
               productName={item.nombre}
               price={item.precio}
               color={item.color}

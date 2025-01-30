@@ -54,7 +54,7 @@ const NewArrivals = () => {
             <div className="px-2" key={item.id}>
               <Product
               _id={item.id}
-              img={item.imagenes?.[0] || "/no-photo.jpg"}
+              img={item.imagenes || "/no-photo.jpg"}
               productName={item.nombre}
               price={item.precio}
               color={item.color}

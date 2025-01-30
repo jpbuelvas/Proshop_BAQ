@@ -24,13 +24,10 @@ export function formatMoney(amount) {
 // Obtener productos desde la API
 export const fetchProducts = async () => {
   try {
-    const response = await axios.get(process.env.REACT_APP_PRODUCTS_API); // Usar variable de entorno
-    if (response.data.status === "success") {
-      const productsWithImages = response.data.data.map((product) => ({
-        ...product,
-        imagenUrl: product.imagenes[0] || "ruta_a_imagen_placeholder.jpg",
-      }));
-      return productsWithImages;
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/products`); // Usar variable de entorno
+    console.log(response,"response")
+    if (response.status === 200) {
+      return response.data;
     } else {
       console.error("Error al obtener productos:", response.data);
       return [];
