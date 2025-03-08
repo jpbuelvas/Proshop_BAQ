@@ -1,16 +1,11 @@
 import logo from "./ProshopLogo.png";
 import logoLight from "./proshopLogoLight.png";
-import bannerImgOne from "./banner/bannerImgOne.webp";
-import bannerImgTwo from "./banner/bannerImgTwo.webp";
-import bannerImgThree from "./banner/bannerImgThree.webp";
 import saleImgOne from "./sale/saleImgOne.webp";
 import saleImgTwo from "./sale/saleImgTwo.webp";
 import saleImgThree from "./sale/saleImgThree.webp";
-import bannerImgProshop from "./banner/bannerImgProshop.webp"
-import bannerImgProshopTwo from "./banner/bannerImgProshop2.jpeg"
-import Banner_newProshop from "./banner/Banner_newProshop.jpeg"
-import BannerNavidad from "./banner/bannerNavidad.jpeg"
-import BannerEnero from "./banner/bannerEnero.jpeg"
+import bannerNew08 from "./banner/bannerNew08-03.jpeg";
+import bannerNew082 from "./banner/bannerNew08-03-01.jpeg";
+import bannerNew083 from "./banner/bannerNew08-03-02.jpeg";
 // ============== Products Start here ====================
 // New Arrivals
 import newArrOne from "./products/newArrival/newArrOne.webp";
@@ -39,17 +34,12 @@ import emptyCart from "../images/emptyCart.png";
 export {
   logo,
   logoLight,
-  bannerImgOne,
-  bannerImgTwo,
-  bannerImgThree,
   saleImgOne,
   saleImgTwo,
   saleImgThree,
-  bannerImgProshop,
-  bannerImgProshopTwo,
-  Banner_newProshop,
-  BannerNavidad,
-  BannerEnero,
+  bannerNew08,
+  bannerNew082,
+  bannerNew083,
   // ===================== Products start here ============
   // New Arrivals
   newArrOne,
