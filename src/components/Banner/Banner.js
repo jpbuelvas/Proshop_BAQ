@@ -104,12 +104,12 @@ const Banner = () => {
       <Slider {...settings}>
         <Link to="/shop">
           <div>
-            <Image imgSrc={bannerNew08} className="w-full h-auto" />
+            <Image imgSrc={bannerNew083} className="w-full h-auto" />
           </div>
         </Link>
          <Link to="/shop">
           <div>
-            <Image imgSrc={bannerNew083} className="w-full h-auto"  />
+            <Image imgSrc={bannerNew08} className="w-full h-auto"  />
           </div>
         </Link>
         

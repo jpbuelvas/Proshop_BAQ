@@ -12,7 +12,7 @@ const FooterBottom = () => {
           Copyright 2024 | ProshopBAQ | Todos los derechos reservados |
           <a href="https://reactbd.com/" target="_blank" rel="noreferrer">
             <span className="ml-1 font-medium group-hover:text-primeColor">
-              Desarrollado por TrinovaTECH.com
+              Desarrollado por Juan B.
             </span>
           </a>
         </p>

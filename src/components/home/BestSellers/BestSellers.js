@@ -7,7 +7,7 @@ const BestSellers = () => {
   const { productos, loading } = useProducts();
 
   // Lista de los IDs de productos que queremos mostrar
-  const selectedIds = [1, 2, 4, 9, 17, 24,32,33];
+  const selectedIds = [52,33,48,40,41,42,43,44,45,46,47,48,49,50];
 
   // Filtrar los productos por los IDs seleccionados
   const filteredProducts = productos.filter((item) => selectedIds.includes(item.id));
