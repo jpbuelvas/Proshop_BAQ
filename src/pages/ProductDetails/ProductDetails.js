@@ -1,23 +1,84 @@
 import React, { useEffect, useState, memo } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import ProductInfo from "../../components/pageProps/productDetails/ProductInfo";
 import ProductsOnSale from "../../components/pageProps/productDetails/ProductsOnSale";
+import { useProducts } from "../../components/services/productsContext";
+import { CircularProgress, Box } from "@mui/material";
 
 //El componente memorizado
 const MemoizedProductsOnSale = memo(ProductsOnSale);
 
 const ProductDetails = () => {
   const location = useLocation();
+  const { _id } = useParams(); // Extraemos el slug de la URL
+  const { productos } = useProducts(); // Obtenemos los productos del contexto o backend
   const [prevLocation, setPrevLocation] = useState("");
-  const [productInfo, setProductInfo] = useState([]);
+  const [productInfo, setProductInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    setProductInfo(location.state.item);
-    setPrevLocation(location.pathname);
-  }, [location]);
+    // Reiniciamos el estado de carga cada vez que se actualizan las dependencias
+    setIsLoading(true);
+
+    // Si se navegó con estado, lo usamos
+    if (location.state && location.state.item) {
+      setProductInfo(location.state.item);
+      setPrevLocation(location.pathname);
+      setIsLoading(false);
+    } else if (productos && productos.length > 0 && _id) {
+      const foundProduct = productos.find((p) => {
+        return p.id === Number(_id);
+      });
+      if (foundProduct) {
+        setProductInfo({
+          ...foundProduct,
+          img: foundProduct.imagenes,
+          price: foundProduct.precio,
+          productName: foundProduct.nombre,
+          des: foundProduct.descripcion,
+        });
+      } else {
+        setProductInfo(null);
+      }
+      setPrevLocation(location.pathname);
+      setIsLoading(false);
+    }
+  }, [location, productos, _id]);
+
+  // Si aún está cargando, se puede mostrar un spinner o simplemente nada
+  if (isLoading) {
+    return (
+      <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        backgroundColor: "rgba(0, 0, 0, 0.5)", // Fondo semitransparente
+        zIndex: 9999,
+        color: "#fff", // Hace que el spinner herede el color blanco
+      }}
+    >
+      <CircularProgress color="inherit" size={60} />
+    </Box>
+    );
+  }
+
+  // Si ya terminó la carga y no se encontró el producto, mostramos un mensaje
+  if (!productInfo) {
+    return (
+      <div className="w-full min-h-screen flex items-center justify-center">
+        <h2 className="text-xl font-bold">Producto no encontrado.</h2>
+      </div>
+    );
+  }
 
   // Normalizar las imágenes a array
   const images = Array.isArray(productInfo.img)
@@ -26,13 +87,13 @@ const ProductDetails = () => {
   const hasMultipleImages = images.length > 1;
 
   const handlePreviousImage = () => {
-    setCurrentImageIndex(prev =>
+    setCurrentImageIndex((prev) =>
       prev === 0 ? images.length - 1 : prev - 1
     );
   };
 
   const handleNextImage = () => {
-    setCurrentImageIndex(prev =>
+    setCurrentImageIndex((prev) =>
       prev === images.length - 1 ? 0 : prev + 1
     );
   };
@@ -80,7 +141,7 @@ const ProductDetails = () => {
                   <FaChevronRight className="text-lg" />
                 </button>
 
-                <div className="relative w-full overflow-hidden min-h-[400px]">
+                <div className="relative overflow-hidden min-h-[400px]">
                   {images.length > 0 ? (
                     images.map((img, index) => (
                       <div
@@ -88,8 +149,7 @@ const ProductDetails = () => {
                         className={`absolute inset-0 transition-opacity duration-300 ${
                           index === currentImageIndex ? "opacity-100" : "opacity-0"
                         }`}
-                      >
-                      </div>
+                      ></div>
                     ))
                   ) : (
                     <p className="text-center text-gray-500">
@@ -100,11 +160,9 @@ const ProductDetails = () => {
               </>
             )}
           </div>
-          
           <div className="w-full md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center order-2 xl:order-3">
             <ProductInfo productInfo={productInfo} />
           </div>
-          
         </div>
       </div>
     </div>

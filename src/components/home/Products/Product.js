@@ -10,11 +10,7 @@ import { formatMoney } from "../../services/utils";
 
 const Product = (props) => {
   const dispatch = useDispatch();
-  const _id = props.productName;
-  const idString = (_id) => {
-    return String(_id).toLowerCase().split(" ").join("");
-  };
-  const rootId = idString(_id);
+  
 
   const navigate = useNavigate();
   const productItem = props;
@@ -24,7 +20,6 @@ const Product = (props) => {
   // Manejo de imágenes múltiples
   const images = Array.isArray(props.img) ? props.img : [props.img];
   const hasMultipleImages = images.length > 1;
-  console.log(images,"images")
   const handlePreviousImage = (e) => {
     e.stopPropagation();
     setCurrentImageIndex((prev) => 
@@ -39,14 +34,14 @@ const Product = (props) => {
     );
   };
 
-  // Resto de funciones existentes
   const handleProductDetails = () => {
-    navigate(`/product/${rootId}`, {
+    navigate(`/product/${productItem._id}`, {
       state: {
         item: productItem,
       },
     });
   };
+  
 
   const handleAddToCart = (selectedTalla) => {
     const sizes = props.tallas || [];
