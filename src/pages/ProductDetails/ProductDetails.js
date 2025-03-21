@@ -7,31 +7,28 @@ import ProductsOnSale from "../../components/pageProps/productDetails/ProductsOn
 import { useProducts } from "../../components/services/productsContext";
 import { CircularProgress, Box } from "@mui/material";
 
-//El componente memorizado
+// El componente memorizado
 const MemoizedProductsOnSale = memo(ProductsOnSale);
 
 const ProductDetails = () => {
   const location = useLocation();
-  const { _id } = useParams(); // Extraemos el slug de la URL
-  const { productos } = useProducts(); // Obtenemos los productos del contexto o backend
+  const { _id } = useParams();
+  const { productos } = useProducts();
   const [prevLocation, setPrevLocation] = useState("");
   const [productInfo, setProductInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    // Reiniciamos el estado de carga cada vez que se actualizan las dependencias
     setIsLoading(true);
 
-    // Si se navegó con estado, lo usamos
+    // Si se navegó con estado
     if (location.state && location.state.item) {
       setProductInfo(location.state.item);
       setPrevLocation(location.pathname);
       setIsLoading(false);
     } else if (productos && productos.length > 0 && _id) {
-      const foundProduct = productos.find((p) => {
-        return p.id === Number(_id);
-      });
+      const foundProduct = productos.find((p) => p.id === Number(_id));
       if (foundProduct) {
         setProductInfo({
           ...foundProduct,
@@ -48,30 +45,28 @@ const ProductDetails = () => {
     }
   }, [location, productos, _id]);
 
-  // Si aún está cargando, se puede mostrar un spinner o simplemente nada
   if (isLoading) {
     return (
       <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "rgba(0, 0, 0, 0.5)", // Fondo semitransparente
-        zIndex: 9999,
-        color: "#fff", // Hace que el spinner herede el color blanco
-      }}
-    >
-      <CircularProgress color="inherit" size={60} />
-    </Box>
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          zIndex: 9999,
+          color: "#fff",
+        }}
+      >
+        <CircularProgress color="inherit" size={60} />
+      </Box>
     );
   }
 
-  // Si ya terminó la carga y no se encontró el producto, mostramos un mensaje
   if (!productInfo) {
     return (
       <div className="w-full min-h-screen flex items-center justify-center">
@@ -80,7 +75,7 @@ const ProductDetails = () => {
     );
   }
 
-  // Normalizar las imágenes a array
+  // Normalizar las imágenes
   const images = Array.isArray(productInfo.img)
     ? productInfo.img
     : [productInfo.img];
@@ -104,12 +99,13 @@ const ProductDetails = () => {
         <div className="xl:-mt-10 -mt-7">
           <Breadcrumbs title="" prevLocation={prevLocation} />
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 h-full -mt-5 xl:-mt-8 pb-10 bg-gray-100 p-4">
-          <div className="h-full order-3 xl:order-1">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 -mt-5 xl:-mt-8 pb-10 bg-gray-100 p-4">
+          <div className="order-3 xl:order-1">
             <MemoizedProductsOnSale />
           </div>
+
           <div className="xl:col-span-2 relative group order-1 xl:order-2">
-            <div className="relative h-full w-full overflow-hidden">
+            <div className="relative w-full overflow-hidden min-h-[300px]">
               {images.map((img, index) => (
                 <div
                   key={index}
@@ -118,7 +114,7 @@ const ProductDetails = () => {
                   }`}
                 >
                   <img
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto object-cover"
                     src={img}
                     alt={`Product view ${index + 1}`}
                   />
@@ -140,26 +136,10 @@ const ProductDetails = () => {
                 >
                   <FaChevronRight className="text-lg" />
                 </button>
-
-                <div className="relative overflow-hidden min-h-[400px]">
-                  {images.length > 0 ? (
-                    images.map((img, index) => (
-                      <div
-                        key={index}
-                        className={`absolute inset-0 transition-opacity duration-300 ${
-                          index === currentImageIndex ? "opacity-100" : "opacity-0"
-                        }`}
-                      ></div>
-                    ))
-                  ) : (
-                    <p className="text-center text-gray-500">
-                      No hay imagen disponible
-                    </p>
-                  )}
-                </div>
               </>
             )}
           </div>
+
           <div className="w-full md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center order-2 xl:order-3">
             <ProductInfo productInfo={productInfo} />
           </div>
