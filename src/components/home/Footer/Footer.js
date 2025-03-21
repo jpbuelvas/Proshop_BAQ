@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from "react"; 
 import { motion } from "framer-motion";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import FooterListTitle from "./FooterListTitle";
-
 
 const Footer = () => {
   const [emailInfo, setEmailInfo] = useState("");
@@ -30,7 +29,7 @@ const Footer = () => {
   return (
     <div className="w-full bg-[#F5F5F3] py-20 footer-container">
       <div className="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 px-4 gap-10">
-        <div className="col-span-2">
+        <div className="md:col-span-2 xl:col-span-2">
           <FooterListTitle title="Más sobre ProshopBAQ" />
           <div className="flex flex-col gap-6">
             <p className="text-base w-full xl:w-[80%]">
@@ -43,7 +42,7 @@ const Footer = () => {
                 rel="noreferrer"
               >
                 <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
-                <FaInstagram />
+                  <FaInstagram />
                 </li>
               </a>
               <a
@@ -58,7 +57,9 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div>
+        
+        
+        <div className="md:col-span-1 xl:col-span-1">
           <FooterListTitle title="Tienda" />
           <ul className="flex flex-col gap-2">
             <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
@@ -72,7 +73,9 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div>
+        
+       
+        <div className="md:col-span-1 xl:col-span-1">
           <div className="w-full">
             <p className="text-center mb-4">
               ¡Recibe las últimas noticias y ofertas exclusivas de ProshopBAQ!
@@ -110,8 +113,8 @@ const Footer = () => {
                 </button>
               </div>
             )}
-
-            {/* <Image
+            {/* Imagen de métodos de pago: 
+            <Image
               className={`w-[80%] lg:w-[60%] mx-auto ${
                 subscription ? "mt-2" : "mt-6"
               }`}

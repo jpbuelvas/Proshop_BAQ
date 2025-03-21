@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { useLocation } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import ProductInfo from "../../components/pageProps/productDetails/ProductInfo";
 import ProductsOnSale from "../../components/pageProps/productDetails/ProductsOnSale";
+
+//El componente memorizado
+const MemoizedProductsOnSale = memo(ProductsOnSale);
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -17,19 +20,19 @@ const ProductDetails = () => {
   }, [location]);
 
   // Normalizar las imágenes a array
-  const images = Array.isArray(productInfo.img) 
-    ? productInfo.img 
+  const images = Array.isArray(productInfo.img)
+    ? productInfo.img
     : [productInfo.img];
   const hasMultipleImages = images.length > 1;
 
   const handlePreviousImage = () => {
-    setCurrentImageIndex(prev => 
+    setCurrentImageIndex(prev =>
       prev === 0 ? images.length - 1 : prev - 1
     );
   };
 
   const handleNextImage = () => {
-    setCurrentImageIndex(prev => 
+    setCurrentImageIndex(prev =>
       prev === images.length - 1 ? 0 : prev + 1
     );
   };
@@ -41,10 +44,10 @@ const ProductDetails = () => {
           <Breadcrumbs title="" prevLocation={prevLocation} />
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 h-full -mt-5 xl:-mt-8 pb-10 bg-gray-100 p-4">
-          <div className="h-full">
-            <ProductsOnSale />
+          <div className="h-full order-3 xl:order-1">
+            <MemoizedProductsOnSale />
           </div>
-          <div className="h-full xl:col-span-2 relative group">
+          <div className="xl:col-span-2 relative group order-1 xl:order-2">
             <div className="relative h-full w-full overflow-hidden">
               {images.map((img, index) => (
                 <div
@@ -76,26 +79,32 @@ const ProductDetails = () => {
                 >
                   <FaChevronRight className="text-lg" />
                 </button>
-                
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                  {images.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`w-3 h-3 rounded-full transition-colors ${
-                        index === currentImageIndex
-                          ? "bg-primeColor"
-                          : "bg-white/50 hover:bg-white/70"
-                      }`}
-                    />
-                  ))}
+
+                <div className="relative w-full overflow-hidden min-h-[400px]">
+                  {images.length > 0 ? (
+                    images.map((img, index) => (
+                      <div
+                        key={index}
+                        className={`absolute inset-0 transition-opacity duration-300 ${
+                          index === currentImageIndex ? "opacity-100" : "opacity-0"
+                        }`}
+                      >
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-center text-gray-500">
+                      No hay imagen disponible
+                    </p>
+                  )}
                 </div>
               </>
             )}
           </div>
-          <div className="h-full w-full md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center">
+          
+          <div className="w-full md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center order-2 xl:order-3">
             <ProductInfo productInfo={productInfo} />
           </div>
+          
         </div>
       </div>
     </div>
