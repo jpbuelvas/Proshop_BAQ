@@ -32,6 +32,7 @@ const Chatbot = () => {
         },
       },
     });
+    console.log(process.env.REACT_APP_N8N_URL);
   }, []);
 
   return <div id="n8n-chat" />;
