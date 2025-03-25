@@ -26,13 +26,14 @@ import WhatsAppPayment from "./components/services/WhatsAppPayment";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PaymentResult from "./pages/payment/paymentResult";
-
+import Chatbot from "./components/services/chatbot";
 const Layout = () => {
   return (
     <div>
       <Header />
       <HeaderBottom />
       <SpecialCase />
+      <Chatbot />
       <ScrollRestoration />
       <Outlet />
       <Footer />
