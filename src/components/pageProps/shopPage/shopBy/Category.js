@@ -1,7 +1,7 @@
 import React from "react";
 import NavTitle from "./NavTitle";
 
-const Category = ({ onCategorySelect }) => {
+const Category = ({ onCategorySelect, selectedCategory }) => {
   const items = ["Retro", "Player", "Sport", "Special Style"];
 
   const handleClick = (cat) => {
@@ -17,7 +17,9 @@ const Category = ({ onCategorySelect }) => {
         <li
           key="all"
           onClick={() => handleClick(null)}
-          className="border-b-[1px] border-b-[#F0F0F0] pb-2 hover:text-primeColor hover:border-gray-400 duration-300"
+          className={`border-b-[1px] border-b-[#F0F0F0] pb-2 hover:text-primeColor hover:border-gray-400 duration-300 ${
+            selectedCategory === null ? "text-primeColor font-medium border-gray-400 bg-gray-100" : ""
+          }`}
         >
           Todas
         </li>
@@ -25,7 +27,9 @@ const Category = ({ onCategorySelect }) => {
           <li
             key={title}
             onClick={() => handleClick(title)}
-            className="border-b-[1px] border-b-[#F0F0F0] pb-2 hover:text-primeColor hover:border-gray-400 duration-300"
+            className={`border-b-[1px] border-b-[#F0F0F0] pb-2 hover:text-primeColor hover:border-gray-400 duration-300 ${
+              selectedCategory === title ? "text-primeColor font-medium border-gray-400 bg-gray-100" : ""
+            }`}
           >
             {title}
           </li>

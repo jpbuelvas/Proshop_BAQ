@@ -29,6 +29,10 @@ const Shop = () => {
             onCategorySelect={setSelectedCategory}
             onColorSelect={setSelectedColor}
             onSizeSelect={setSelectedSize}
+            selectedCategory={selectedCategory}
+            selectedColor={selectedColor}
+            selectedSize={selectedSize}
+            selectedPriceRange={selectedPriceRange}
           />
         </div>
         <div className="w-full mdl:w-[80%] lgl:w-[75%] h-full flex flex-col gap-10">
