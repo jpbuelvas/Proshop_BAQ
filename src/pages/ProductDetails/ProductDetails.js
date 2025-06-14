@@ -1,11 +1,11 @@
-import React, { useEffect, useState, memo } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Box, CircularProgress } from "@mui/material";
+import { memo, useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useLocation, useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import ProductInfo from "../../components/pageProps/productDetails/ProductInfo";
 import ProductsOnSale from "../../components/pageProps/productDetails/ProductsOnSale";
 import { useProducts } from "../../components/services/productsContext";
-import { CircularProgress, Box } from "@mui/material";
 
 // El componente memorizado
 const MemoizedProductsOnSale = memo(ProductsOnSale);
@@ -104,8 +104,15 @@ const ProductDetails = () => {
             <MemoizedProductsOnSale />
           </div>
 
-          <div className="xl:col-span-2 relative group order-1 xl:order-2">
-            <div className="relative w-full overflow-hidden min-h-[300px]">
+          <div className="xl:col-span-2 relative group order-1 xl:order-2 flex items-center">
+            <div className="relative w-full overflow-hidden min-h-[300px] h-[70vh]">
+              
+              
+             <img
+                src={images[0]}
+                alt=""
+                className="w-full h-auto invisible"
+              />
               {images.map((img, index) => (
                 <div
                   key={index}
@@ -114,7 +121,7 @@ const ProductDetails = () => {
                   }`}
                 >
                   <img
-                    className="w-full h-auto object-cover"
+                    className="w-full h-full object-cover"
                     src={img}
                     alt={`Product view ${index + 1}`}
                   />
@@ -138,6 +145,7 @@ const ProductDetails = () => {
                 </button>
               </>
             )}
+          
           </div>
 
           <div className="w-full md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center order-2 xl:order-3">
