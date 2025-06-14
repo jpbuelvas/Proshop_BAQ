@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import Product from "../../home/Products/Product";
-import { CircularProgress, Box} from "@mui/material";
+import { CircularProgress, Box } from "@mui/material";
 import { useProducts } from "../../services/productsContext";
 
 function Items({ currentItems }) {
@@ -18,7 +18,7 @@ function Items({ currentItems }) {
               color={item.color}
               badge={true}
               des={item.descripcion || "Sin descripción disponible."}
-              tallas={item.tallas} // Aquí estamos pasando la propiedad 'tallas'
+              tallas={item.tallas}
             />
           </div>
         ))}
@@ -26,66 +26,79 @@ function Items({ currentItems }) {
   );
 }
 
-const Pagination = ({ itemsPerPage, priceRange }) => {
+const Pagination = ({ itemsPerPage, priceRange, category, color, size }) => {
   const { productos, loading } = useProducts();
-  const [filteredProducts, setFilteredProducts] = useState([]); // Productos filtrados
-  const [itemOffset, setItemOffset] = useState(0); // Desplazamiento inicial para paginación
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [itemOffset, setItemOffset] = useState(0);
 
-
-  // Filtrar productos según el rango de precios
   useEffect(() => {
+    let filtered = productos;
+
     if (priceRange) {
-      const filtered = productos.filter(
+      filtered = filtered.filter(
         (product) =>
           product.precio >= priceRange.min && product.precio <= priceRange.max
       );
-      setFilteredProducts(filtered);
-      setItemOffset(0); // Reinicia el desplazamiento al cambiar el filtro
-    } else {
-      setFilteredProducts(productos); // Sin filtro, muestra todos los productos
     }
-  }, [priceRange, productos]);
 
-  // Productos actuales para la página
+    if (category) {
+      filtered = filtered.filter((product) =>
+        product.categoria?.toLowerCase() === category.toLowerCase()
+      );
+    }
+
+    if (color) {
+      filtered = filtered.filter((product) =>
+        product.color?.toLowerCase().includes(color.toLowerCase())
+      );
+    }
+
+    if (size) {
+      filtered = filtered.filter((product) =>
+        Array.isArray(product.tallas) && product.tallas.includes(size)
+      );
+    }
+
+    setFilteredProducts(filtered);
+    setItemOffset(0);
+  }, [priceRange, category, color, size, productos]);
+
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = filteredProducts.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(filteredProducts.length / itemsPerPage);
 
-  // Manejar cambio de página
   const handlePageClick = (event) => {
-    const newOffset =
-      (event.selected * itemsPerPage) % filteredProducts.length;
+    const newOffset = (event.selected * itemsPerPage) % filteredProducts.length;
     setItemOffset(newOffset);
   };
 
   if (loading) {
     return (
       <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "rgba(0, 0, 0, 0.5)", // Fondo semitransparente
-        zIndex: 9999,
-        color: "#fff", // Hace que el spinner herede el color blanco
-      }}
-    >
-      <CircularProgress color="inherit" size={60} />
-    </Box>
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          zIndex: 9999,
+          color: "#fff",
+        }}
+      >
+        <CircularProgress color="inherit" size={60} />
+      </Box>
     );
   }
 
-  // Si no hay productos filtrados, mostrar mensaje
   if (filteredProducts.length === 0) {
     return (
       <div className="text-center py-20">
         <p className="text-xl font-semibold text-gray-600">
-          No hay productos disponibles en este rango de precios.
+          No hay productos disponibles con estos filtros.
         </p>
       </div>
     );
@@ -110,8 +123,7 @@ const Pagination = ({ itemsPerPage, priceRange }) => {
           activeClassName="bg-black text-white"
         />
         <p className="text-base font-normal text-lightText">
-          Productos del {itemOffset + 1} al {Math.min(endOffset, filteredProducts.length)} de{" "}
-          {filteredProducts.length}
+          Productos del {itemOffset + 1} al {Math.min(endOffset, filteredProducts.length)} de {filteredProducts.length}
         </p>
       </div>
     </div>
