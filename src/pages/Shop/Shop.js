@@ -7,6 +7,9 @@ import ShopSideNav from "../../components/pageProps/shopPage/ShopSideNav";
 const Shop = () => {
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const [selectedPriceRange, setSelectedPriceRange] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
 
   const handlePriceFilter = (range) => {
     setSelectedPriceRange(range);
@@ -21,11 +24,22 @@ const Shop = () => {
       <Breadcrumbs title="Productos" />
       <div className="w-full h-full flex pb-20 gap-10">
         <div className="w-[20%] lgl:w-[25%] hidden mdl:inline-flex h-full">
-          <ShopSideNav onPriceRangeSelect={handlePriceFilter} />
+          <ShopSideNav
+            onPriceRangeSelect={handlePriceFilter}
+            onCategorySelect={setSelectedCategory}
+            onColorSelect={setSelectedColor}
+            onSizeSelect={setSelectedSize}
+          />
         </div>
         <div className="w-full mdl:w-[80%] lgl:w-[75%] h-full flex flex-col gap-10">
           <ProductBanner itemsPerPageFromBanner={itemsPerPageFromBanner} />
-          <Pagination itemsPerPage={itemsPerPage} priceRange={selectedPriceRange} />
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            priceRange={selectedPriceRange}
+            category={selectedCategory}
+            color={selectedColor}
+            size={selectedSize}
+          />
         </div>
       </div>
     </div>
