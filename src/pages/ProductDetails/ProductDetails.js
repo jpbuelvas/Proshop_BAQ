@@ -99,10 +99,7 @@ const ProductDetails = () => {
         <div className="xl:-mt-10 -mt-7">
           <Breadcrumbs title="" prevLocation={prevLocation} />
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 -mt-5 xl:-mt-8 pb-10 bg-gray-100 p-4">
-          <div className="order-3 xl:order-1">
-            <MemoizedProductsOnSale />
-          </div>
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4 -mt-5 xl:-mt-8 pb-10 bg-gray-100 p-4">
 
           <div className="xl:col-span-2 relative group order-1 xl:order-2 flex items-center">
             <div className="relative w-full overflow-hidden min-h-[300px] h-[70vh]">
@@ -152,6 +149,7 @@ const ProductDetails = () => {
             <ProductInfo productInfo={productInfo} />
           </div>
         </div>
+        <MemoizedProductsOnSale />
       </div>
     </div>
   );
