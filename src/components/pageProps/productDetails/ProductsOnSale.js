@@ -25,19 +25,20 @@ const ProductsOnSale = () => {
   return (
     <div className="mt-8">
       <Heading heading="Productos Relacionados" />
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 place-items-center">
         {randomProducts.map((item) => (
-          <Product
-            key={item.id}
-            _id={item.id}
-            img={item.imagenes || "/no-photo.jpg"}
-            productName={item.nombre}
-            price={item.precio}
-            color={item.color}
-            badge={true}
-            des={item.descripcion || "Sin descripción disponible."}
-            tallas={item.tallas}
-          />
+          <div key={item.id} className="w-full max-w-80">
+            <Product
+              _id={item.id}
+              img={item.imagenes || "/no-photo.jpg"}
+              productName={item.nombre}
+              price={item.precio}
+              color={item.color}
+              badge={true}
+              des={item.descripcion || "Sin descripción disponible."}
+              tallas={item.tallas}
+            />
+          </div>
         ))}
       </div>
     </div>
