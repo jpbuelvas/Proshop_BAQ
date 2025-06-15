@@ -145,7 +145,7 @@ const ProductDetails = () => {
           
           </div>
 
-          <div className="w-full md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center order-2 xl:order-3">
+          <div className="w-full md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center order-2 xl:order-3 ">
             <ProductInfo productInfo={productInfo} />
           </div>
         </div>

@@ -1,8 +1,7 @@
-import React from "react"; 
-import { useProducts } from "../../services/productsContext";
 import { CircularProgress } from "@mui/material";
 import Heading from "../../home/Products/Heading";
 import Product from "../../home/Products/Product";
+import { useProducts } from "../../services/productsContext";
 
 const ProductsOnSale = () => {
   const { productos, loading } = useProducts();
@@ -23,7 +22,7 @@ const ProductsOnSale = () => {
   }
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 mb-8">
       <Heading heading="Productos Relacionados" />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 place-items-center">
         {randomProducts.map((item) => (
